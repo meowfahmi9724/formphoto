@@ -204,7 +204,7 @@ function adjust(c){if(S.br==100&&S.ct==100&&S.sa==100&&!S.sh)return;const x=c.ge
  if(b!=1||k!=1||s!=1)for(let i=0;i<d.length;i+=4){if(!d[i+3])continue;const l=.299*d[i]+.587*d[i+1]+.114*d[i+2];for(let j=0;j<3;j++){let v=l+(d[i+j]-l)*s;d[i+j]=(v*b-128)*k+128}}
  if(S.sh){const a=S.sh/100*1.2,o=new Uint8ClampedArray(d),r=w*4;for(let y=1;y<h-1;y++)for(let X=1;X<w-1;X++){const i=y*r+X*4;if(!o[i+3])continue;for(let j=0;j<3;j++){const v=o[i+j];d[i+j]=v+a*(4*v-o[i+j-4]-o[i+j+4]-o[i+j-r]-o[i+j+r])}}}
  x.putImageData(id,0,0)}
-let raf;function draw(){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{if(!S.orig)return;const[W,H]=dims();render(cv,Math.min(3,700/Math.max(W,H)),false,S.show)})}
+var raf;function draw(){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{if(!S.orig)return;const[W,H]=dims();render(cv,Math.min(3,700/Math.max(W,H)),false,S.show)})}
 $('#cmp').onpointerdown=()=>{S.show=true;draw()};
 ['pointerup','pointerleave','pointercancel'].forEach(n=>$('#cmp').addEventListener(n,()=>{if(S.show){S.show=false;draw()}}));
 
@@ -257,7 +257,7 @@ async function build(){const c=mk(1,1);render(c,1,true);const png=S.fmt=='png',m
  if(T&&b.size>T){let lo=.02,hi=S.q,best=null;for(let i=0;i<9;i++){const m=(lo+hi)/2,x=await tb(m);if(x.size<=T){best=x;lo=m}else hi=m}
   if(best)b=best;else{b=await tb(.02);miss=b.size>T}}
  return{blob:b,miss,T}}
-let it;function info(){clearTimeout(it);it=setTimeout(async()=>{if(!S.fg)return;const[W,H]=dims(),r=await build(),kb=r.blob.size/1024,bad=r.T&&kb>r.T/1024;
+var it;function info(){clearTimeout(it);it=setTimeout(async()=>{if(!S.fg)return;const[W,H]=dims(),r=await build(),kb=r.blob.size/1024,bad=r.T&&kb>r.T/1024;
  const txt=`${kb.toFixed(1)} KB · ${W}×${H}px`;$('#meta').textContent=txt;$('#meta').classList.toggle('bad',!!bad);
  $('#res').hidden=false;$('#res').className='res'+(bad?' bad':'');$('#res').innerHTML=`<span>${kb.toFixed(1)} KB</span><span>${W}×${H}px</span>`;
  $('#warn').textContent=bad?t('miss'):(r.png&&r.T?t('pngw'):'')},350)}
