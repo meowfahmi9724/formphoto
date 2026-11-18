@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ফর্মফটো – FormPhoto</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#121826;--mut:#667085;--line:#e3e7ee;--bg:#f2f4f8;--card:#fff;--acc:#2447e8;--acc2:#e8f0ff;--ok:#0a8f5b;--bad:#c4321f}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+body{margin:0;font-family:'Hind Siliguri',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.5}
+button,input{font:inherit;color:inherit}button{cursor:pointer;border:0;background:none}
+.top{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;max-width:1100px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:30px;height:30px;border-radius:9px;background:linear-gradient(145deg,#2447e8,#6a8bff);position:relative}
+.logo:after{content:"";position:absolute;inset:7px 9px;border:2px solid #fff;border-radius:50% 50% 4px 4px/60% 60% 4px 4px}
+.brand b{font-size:18px}
+#lang{padding:7px 14px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-weight:600;font-size:13px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 14px 48px}
+.hero{background:linear-gradient(160deg,#18246b,#2447e8 70%,#5f84ff);color:#fff;border-radius:26px;padding:28px 22px;margin-bottom:14px}
+.hero h1{margin:0 0 8px;font-size:36px;letter-spacing:-.02em;line-height:1.15}
+.lead{margin:0 0 14px;font-size:16.5px;opacity:.94}
+.how{margin:0 0 20px;padding-left:22px;display:grid;gap:4px;font-size:15.5px}
+.hero .btn{background:#fff;color:var(--acc)}
+.hero .btn.ghost{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.4)}
+.hero .hint{color:rgba(255,255,255,.82);margin-top:14px}
+.big .btn{flex:1;min-width:160px;text-align:center;padding:15px 18px;font-size:16px}
+.hero.mini{padding:14px 18px}.hero.mini h1{font-size:20px;margin:0 0 10px}
+.hero.mini .lead,.hero.mini .how,.hero.mini .hint{display:none}
+.hero.mini .big .btn{padding:9px 12px;font-size:13.5px}
+#work{display:grid;gap:14px}
+.stage{position:sticky;top:0;z-index:4;height:38vh;border-radius:22px;background:#1a1d27;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 12px 32px -14px rgba(18,24,38,.5)}
+.stage:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(110,140,255,.22),transparent 60%)}
+#c{position:relative;max-width:calc(100% - 28px);max-height:calc(100% - 28px);touch-action:none;border-radius:4px;box-shadow:0 10px 40px rgba(0,0,0,.45);background:repeating-conic-gradient(#ddd 0 25%,#fff 0 50%) 0 0/16px 16px}
+#c.paint{cursor:crosshair}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{padding:12px 18px;border-radius:14px;background:var(--acc);color:#fff;font-weight:600;transition:transform .12s}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.btn.w{width:100%}.btn.sm{padding:9px 14px;font-size:13.5px;border-radius:11px}
+#cmp,#meta{position:absolute;bottom:10px;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.16);color:#fff;font-size:12px;backdrop-filter:blur(6px)}
+#cmp{right:10px;user-select:none;-webkit-user-select:none;touch-action:none}#meta{left:10px}
+#meta.bad{background:#c4321f}
+#busy{position:absolute;inset:0;background:rgba(18,22,32,.84);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;z-index:5;padding:30px;text-align:center}
+.bar{width:min(240px,70%);height:6px;border-radius:9px;background:rgba(255,255,255,.18);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:#7c9bff;transition:width .2s}
+.card{background:var(--card);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:13px}
+.card h3{margin:0;font-size:18px}
+.card .d{margin:-8px 0 0;color:var(--mut);font-size:13.5px}
+.lbl{font-weight:600;font-size:13.5px;color:var(--mut);margin-bottom:7px;display:block}
+.seg{display:flex;background:var(--bg);border-radius:13px;padding:4px;gap:4px}
+.seg button{flex:1;padding:9px 4px;border-radius:10px;font-weight:500;font-size:14px;color:var(--mut)}
+.seg button.on{background:var(--card);color:var(--acc);font-weight:600;box-shadow:0 1px 4px rgba(18,24,38,.14)}
+.sw{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.sw button,.sw input{width:36px;height:36px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);padding:0}
+.sw button.on{box-shadow:0 0 0 2.5px var(--acc)}
+.sw .tr{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/10px 10px}
+.sl span{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:2px}
+.sl i{font-style:normal;font-weight:500}.sl em{font-style:normal;color:var(--mut)}
+input[type=range]{width:100%;accent-color:var(--acc);height:26px}
+.f{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.f input,.kb{width:100%;padding:12px 13px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);outline:0;font-size:16px}
+.f input:focus,.kb:focus{border-color:var(--acc);background:#fff}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{padding:7px 12px;border-radius:99px;background:var(--acc2);color:var(--acc);font-size:13px;font-weight:500}
+.hint{font-size:12.5px;color:var(--mut);margin:0}
+.res{padding:12px 14px;border-radius:14px;background:#e9f7f0;color:var(--ok);display:flex;justify-content:space-between;font-weight:600}
+.res.bad{background:#fdeceb;color:var(--bad)}
+#toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:11px 18px;border-radius:14px;font-size:14px;z-index:9;max-width:88vw;text-align:center}
+.spin{width:30px;height:30px;border:3px solid rgba(255,255,255,.25);border-top-color:#fff;border-radius:50%;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.spin{animation:none}}
+@media(min-width:900px){#work{grid-template-columns:1fr 450px;align-items:start}.stage{top:12px;height:calc(100vh - 24px)}.hero h1{font-size:44px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="brand"><i class="logo"></i><b data-i="app"></b></div><button id="lang">EN</button></header>
+<main class="wrap">
+<section class="hero" id="hero">
+ <h1 data-i="app"></h1>
+ <p class="lead" data-i="lead"></p>
+ <ol class="how"><li data-i="hw1"></li><li data-i="hw2"></li><li data-i="hw3"></li></ol>
+ <div class="row big"><button class="btn cam" data-i="cam2"></button><button class="btn ghost pick" data-i="gal2"></button></div>
+</section>
+<div id="work" hidden>
+ <section class="stage">
+  <canvas id="c" width="300" height="300"></canvas>
+  <div id="meta"></div>
+  <button id="cmp" data-i="hold"></button>
+  <div id="busy" hidden><div class="spin"></div><div id="bt"></div><div class="bar"><i id="pb"></i></div></div>
+ </section>
+ <div class="cards">
+  <section class="card">
+   <h3 data-i="c1"></h3><p class="d" data-i="c1d"></p>
+   <button class="btn w" id="ai" data-i="ai"></button>
+   <p class="hint" data-i="aih"></p>
+   <div><span class="lbl" data-i="fix"></span><div class="seg" id="tools"><button data-v="move" class="on" data-i="mv"></button><button data-v="erase" data-i="er"></button><button data-v="restore" data-i="rs"></button></div></div>
+   <div id="bs"></div>
+   <div class="row"><button class="btn ghost sm" id="undo" data-i="undo"></button><button class="btn ghost sm" id="reset" data-i="reset"></button></div>
+   <div><button class="btn ghost sm" id="sig" data-i="sig"></button><p class="hint" data-i="sigh" style="margin-top:6px"></p></div>
+  </section>
+  <section class="card" style="margin-top:14px">
+   <h3 data-i="c2"></h3><p class="d" data-i="c2d"></p>
+   <div class="sw" id="sw"></div>
+  </section>
+  <section class="card" style="margin-top:14px">
+   <h3 data-i="c3"></h3><p class="d" data-i="c3d"></p>
+   <div class="f"><label><span class="lbl" data-i="w"></span><input id="W" type="number" inputmode="numeric" min="1" max="4000"></label><label><span class="lbl" data-i="h"></span><input id="H" type="number" inputmode="numeric" min="1" max="4000"></label></div>
+   <p class="hint" data-i="sh1"></p>
+   <div><span class="lbl" data-i="qk"></span><div class="chips" id="chips"></div></div>
+   <div id="zs"></div>
+   <div class="row"><button class="btn sm" id="auto" data-i="autof"></button></div>
+   <p class="hint" data-i="drag"></p>
+  </section>
+  <section class="card" style="margin-top:14px">
+   <h3 data-i="c4"></h3><p class="d" data-i="c4d"></p>
+   <div id="sls"></div>
+   <div class="row"><button class="btn sm" id="ae" data-i="ae"></button><button class="btn ghost sm" id="er2" data-i="reset"></button></div>
+  </section>
+  <section class="card" style="margin-top:14px">
+   <h3 data-i="c5"></h3><p class="d" data-i="c5d"></p>
+   <div><span class="lbl" data-i="fmt"></span><div class="seg" id="fmt"><button data-v="jpg" class="on">JPG</button><button data-v="jpeg">JPEG</button><button data-v="png">PNG</button></div></div>
+   <div><span class="lbl" data-i="q"></span><div class="seg" id="qs"><button data-v=".8" data-i="good"></button><button data-v=".9" class="on" data-i="better"></button><button data-v=".97" data-i="best"></button></div></div>
+   <div><span class="lbl" data-i="kb"></span><input class="kb" id="KB" type="number" inputmode="numeric" min="1" data-p="kbp"></div>
+   <div><span class="lbl" data-i="nm"></span><input class="kb" id="NM" maxlength="40" data-p="nmp"></div>
+   <div class="res" id="res" hidden></div>
+   <p class="hint" id="warn"></p>
+   <button class="btn w" id="dl" data-i="dl"></button>
+  </section>
+ </div>
+</div>
+</main>
+<input type="file" id="f1" accept="image/*" hidden>
+<input type="file" id="f2" accept="image/*" capture="user" hidden>
+<div id="toast" hidden></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const D={bn:{app:'ফর্মফটো',sub:'ভর্তি আবেদনের ছবি ও সিগনেচার',et:'ছবি বা সিগনেচার যোগ করুন',ep:'সব কাজ আপনার ফোনেই হয়, ছবি কোথাও আপলোড হয় না।',gal:'গ্যালারি',cam:'ক্যামেরা',hold:'চেপে ধরে মূল ছবি দেখুন',tip:'সামনে থেকে, ভালো আলোয়, প্লেইন দেয়ালের সামনে ছবি তুললে সবচেয়ে ভালো ফল পাবেন।',t1:'ছবি',t2:'ব্যাকগ্রাউন্ড',t3:'সাইজ',t4:'এনহান্স',t5:'সেভ',ai:'AI দিয়ে ব্যাকগ্রাউন্ড মুছুন',aih:'প্রথমবার AI মডেল নামবে (ইন্টারনেট লাগবে)। পরের বার দ্রুত চলবে।',mv:'সরান',er:'মুছুন',rs:'ফেরান',brush:'ব্রাশ সাইজ',undo:'আনডু',reset:'রিসেট',sig:'সিগনেচার ক্লিন',bgc:'ব্যাকগ্রাউন্ড রং',w:'প্রস্থ (px)',h:'উচ্চতা (px)',sh1:'একটি ঘর খালি রাখলে মূল অনুপাত থাকবে।',qk:'দ্রুত সাজেশন (ঐচ্ছিক)',zoom:'জুম',autof:'অটো ফ্রেম',drag:'ছবির উপর আঙুল টেনে জায়গা ঠিক করুন (সরান মোডে)।',br:'উজ্জ্বলতা',ct:'কনট্রাস্ট',sa:'রঙের গাঢ়তা',shp:'শার্পনেস',sm:'স্মুথ',ae:'অটো এনহান্স',fmt:'ফরম্যাট',q:'কোয়ালিটি',good:'গুড',better:'বেটার',best:'বেস্ট',kb:'সর্বোচ্চ সাইজ (KB)',kbp:'ঐচ্ছিক, যেমন 50',dl:'ডাউনলোড করুন',err:'ছবিটি খোলা যায়নি',first:'আগে একটি ছবি দিন',aierr:'AI চলেনি। ইন্টারনেট চেক করে আবার চেষ্টা করুন।',load:'AI মডেল লোড হচ্ছে…',proc:'ব্যাকগ্রাউন্ড মোছা হচ্ছে…',miss:'এই সাইজে পৌঁছানো যায়নি। মাপ কমিয়ে দেখুন।',pngw:'PNG-তে KB সীমা কাজ করে না। JPG বেছে নিন।',sigq:'সিগনেচার'},
+en:{app:'FormPhoto',sub:'Photo & signature for admission forms',et:'Add a photo or signature',ep:'Everything runs on your phone. Your photo is never uploaded.',gal:'Gallery',cam:'Camera',hold:'Hold to see original',tip:'For best results, shoot facing the light against a plain wall.',t1:'Photo',t2:'Background',t3:'Size',t4:'Enhance',t5:'Save',ai:'Remove background with AI',aih:'The AI model downloads on first use (internet needed). Later runs are faster.',mv:'Move',er:'Erase',rs:'Restore',brush:'Brush size',undo:'Undo',reset:'Reset',sig:'Clean signature',bgc:'Background color',w:'Width (px)',h:'Height (px)',sh1:'Leave one field empty to keep the original ratio.',qk:'Quick suggestions (optional)',zoom:'Zoom',autof:'Auto frame',drag:'Drag on the photo to reposition (Move mode).',br:'Brightness',ct:'Contrast',sa:'Color richness',shp:'Sharpness',sm:'Smooth',ae:'Auto enhance',fmt:'Format',q:'Quality',good:'Good',better:'Better',best:'Best',kb:'Max file size (KB)',kbp:'Optional, e.g. 50',dl:'Download',err:'Could not open this image',first:'Add a photo first',aierr:'AI failed. Check your internet and try again.',load:'Loading AI model…',proc:'Removing background…',miss:'Could not reach this size. Try smaller dimensions.',pngw:'KB limit does not work for PNG. Choose JPG.',sigq:'Signature'}};
+Object.assign(D.bn,{"lead": "ভর্তি আবেদনের ছবি ও সিগনেচার এখানেই তৈরি করুন। ব্যাকগ্রাউন্ড বদলান, ভার্সিটির চাওয়া মাপ ও KB সাইজে সেভ করুন।", "hw1": "নিচের বাটনে ছবি তুলুন অথবা ফোন থেকে সিলেক্ট করুন", "hw2": "ব্যাকগ্রাউন্ড, মাপ ও ছবির মান ঠিক করুন", "hw3": "ডাউনলোড করে আবেদনে আপলোড করুন", "cam2": "📷 ক্যামেরায় ছবি তুলুন", "gal2": "🖼 ফোন থেকে ছবি সিলেক্ট করুন", "priv": "আপনার ছবি আপনার ফোনেই থাকে, কোথাও জমা হয় না।", "c1": "ব্যাকগ্রাউন্ড মুছুন", "c1d": "AI নিজে থেকে ছবির পেছনের অংশ মুছে দেবে। কোথাও ভুল হলে নিচের ব্রাশ দিয়ে ঠিক করুন।", "fix": "হাতে ঠিক করুন (বেছে নিয়ে ছবির উপর আঙুল বুলান)", "sigh": "সিগনেচার হলে সাদা কাগজে সই করে ছবি তুলুন, তারপর এই বাটন চাপুন।", "c2": "ব্যাকগ্রাউন্ডের রং", "c2d": "আবেদনে যে রং চেয়েছে সেটি বেছে নিন, অথবা নিজের পছন্দের রং দিন।", "c3": "ছবির মাপ", "c3d": "ভার্সিটি যে মাপ চেয়েছে সেটি পিক্সেলে লিখুন।", "c4": "ছবি সুন্দর করুন", "c4d": "উজ্জ্বলতা, শার্পনেস, স্মুথ ইত্যাদি নিজের মতো ঠিক করুন।", "c5": "ফাইল সেভ করুন", "c5d": "ফাইলের ধরন, কোয়ালিটি আর সর্বোচ্চ KB সাইজ দিয়ে ডাউনলোড করুন।"});Object.assign(D.en,{"lead": "Make your admission photo and signature here. Change the background and save at the exact size and KB your university asks for.", "hw1": "Take a photo or pick one from your phone", "hw2": "Adjust background, size and quality", "hw3": "Download and upload it to your application", "cam2": "📷 Take a photo", "gal2": "🖼 Choose from phone", "priv": "Your photo stays on your phone. Nothing is stored anywhere.", "c1": "Remove background", "c1d": "AI removes the background automatically. Fix any mistakes with the brush below.", "fix": "Fix by hand (pick a tool, then draw on the photo)", "sigh": "For a signature: sign on white paper, take a photo, then tap this.", "c2": "Background color", "c2d": "Pick the color your form asks for, or choose your own.", "c3": "Photo size", "c3d": "Enter the size your university asks for, in pixels.", "c4": "Enhance", "c4d": "Adjust brightness, sharpness, smoothing and more.", "c5": "Save file", "c5d": "Choose file type, quality and max KB, then download."});
+Object.assign(D.bn,{"nm": "আপনার নাম (ঐচ্ছিক)", "nmp": "যেমন: রাফি"});Object.assign(D.en,{"nm": "Your name (optional)", "nmp": "e.g. Rafi"});
+let L='bn';const t=k=>D[L][k]||k;
+const S={orig:null,fg:null,bg:'#ffffff',zoom:100,ox:0,oy:0,br:100,ct:100,sa:100,sh:0,sm:0,fmt:'jpg',q:.9,tool:'move',brush:30,undo:[],show:false};
+const cv=$('#c');
+const mk=(w,h)=>{const c=document.createElement('canvas');c.width=Math.max(1,w);c.height=Math.max(1,h);return c};
+const cl=c=>{const n=mk(c.width,c.height);n.getContext('2d').drawImage(c,0,0);return n};
+const sl=(k,l,a,b,v)=>`<label class="sl"><span><i data-i="${l}"></i><em>${v}</em></span><input type="range" id="s_${k}" data-k="${k}" min="${a}" max="${b}" value="${v}"></label>`;
+$('#bs').innerHTML=sl('brush','brush',10,100,30);
+$('#zs').innerHTML=sl('zoom','zoom',20,400,100);
+$('#sls').innerHTML=[['br','br',50,150,100],['ct','ct',50,150,100],['sa','sa',0,200,100],['sh','shp',0,100,0],['sm','sm',0,100,0]].map(a=>sl(...a)).join('');
+const setSl=(k,v)=>{S[k]=v;const i=$('#s_'+k);i.value=v;i.parentNode.querySelector('em').textContent=Math.round(v)};
+
+function toast(m){const e=$('#toast');e.textContent=m;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,3200)}
+function busy(on,m){$('#busy').hidden=!on;if(m)$('#bt').textContent=m;$('#pb').style.width='0'}
+
+/* language */
+function setLang(l){L=l;document.documentElement.lang=l;$$('[data-i]').forEach(e=>e.textContent=t(e.dataset.i));$$('[data-p]').forEach(e=>e.placeholder=t(e.dataset.p));$('#lang').textContent=l==='bn'?'EN':'বাং';try{localStorage.setItem('fp_lang',l)}catch(e){}
+ $('#chips').innerHTML=[['300×300',300,300],['300×370',300,370],[t('sigq')+' 300×80',300,80]].map(c=>`<button data-w="${c[1]}" data-h="${c[2]}">${c[0]}</button>`).join('');info()}
+$('#lang').onclick=()=>setLang(L==='bn'?'en':'bn');
+$('#chips').onclick=e=>{const b=e.target.closest('button');if(!b)return;$('#W').value=b.dataset.w;$('#H').value=b.dataset.h;if(S.fg)frame(+b.dataset.h<120);draw();info()};
+
+/* navigation */
+function setTool(v){S.tool=v;$$('#tools button').forEach(b=>b.classList.toggle('on',b.dataset.v==v));cv.classList.toggle('paint',v!='move')}
+$('#tools').onclick=e=>{const b=e.target.closest('button');if(b)setTool(b.dataset.v)};
+function seg(id,f){$(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;$$(id+' button').forEach(x=>x.classList.toggle('on',x==b));f(b.dataset.v)}}
+seg('#fmt',v=>{S.fmt=v;$('#qs').style.opacity=v=='png'?.4:1;info()});
+seg('#qs',v=>{S.q=+v;info()});
+
+/* swatches */
+const COL=['#ffffff','#cfe6ff','#3b82f6','#d9d9d9','#d32f2f','transparent'];
+$('#sw').innerHTML=COL.map(c=>`<button data-c="${c}" class="${c=='transparent'?'tr':''}" style="${c!='transparent'?'background:'+c:''}"></button>`).join('')+'<input type="color" id="cc" value="#ffffff">';
+function setBg(c){S.bg=c;$$('#sw button').forEach(b=>b.classList.toggle('on',b.dataset.c==c));draw();info()}
+$('#sw').onclick=e=>{const b=e.target.closest('button');if(b)setBg(b.dataset.c)};
+$('#cc').oninput=e=>setBg(e.target.value);
+setBg('#ffffff');
+
+/* inputs */
+document.addEventListener('input',e=>{const i=e.target;if(i.dataset.k){S[i.dataset.k]=+i.value;i.parentNode.querySelector('em').textContent=i.value;if(i.dataset.k!='brush'){draw();info()}}});
+['#W','#H'].forEach(s=>$(s).oninput=()=>{draw();info()});
+$('#KB').oninput=info;
+
+/* load image */
+$$('.pick').forEach(b=>b.onclick=()=>$('#f1').click());
+$$('.cam').forEach(b=>b.onclick=()=>$('#f2').click());
+['#f1','#f2'].forEach(s=>$(s).onchange=e=>{load(e.target.files[0]);e.target.value=''});
+async function load(f){if(!f)return;try{let bm;try{bm=await createImageBitmap(f,{imageOrientation:'from-image'})}catch(e){bm=await createImageBitmap(f)}
+ const r=Math.min(1,1400/Math.max(bm.width,bm.height));S.orig=mk(Math.round(bm.width*r),Math.round(bm.height*r));S.orig.getContext('2d').drawImage(bm,0,0,S.orig.width,S.orig.height);
+ S.fg=cl(S.orig);S.undo=[];S.ox=S.oy=0;setSl('zoom',100);$('#hero').classList.add('mini');$('#work').hidden=false;draw();info();setTimeout(()=>$('#work').scrollIntoView({behavior:'smooth'}),80)}catch(e){toast(t('err'))}}
+
+/* geometry + render */
+function dims(){let w=+$('#W').value,h=+$('#H').value;const o=S.orig,ar=o?o.height/o.width:1;
+ if(!w&&!h){w=Math.min(o?o.width:600,800);h=Math.round(w*ar)}else if(!h)h=Math.round(w*ar);else if(!w)w=Math.round(h/ar);
+ return[Math.min(w,4000),Math.min(h,4000)]}
+function geo(W,H,src){const fw=src.width,fh=src.height,b=Math.max(W/fw,H/fh),s=b*S.zoom/100;return{s,b,w:fw*s,h:fh*s,x:(W-fw*s)/2+S.ox*W,y:(H-fh*s)/2+S.oy*H}}
+function render(c,k,flat,raw){const[W,H]=dims();c.width=Math.max(1,Math.round(W*k));c.height=Math.max(1,Math.round(H*k));const x=c.getContext('2d');
+ if(S.bg!='transparent'){x.fillStyle=S.bg;x.fillRect(0,0,c.width,c.height)}else if(flat){x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height)}
+ const src=raw?S.orig:S.fg;if(!src)return;const g=geo(c.width,c.height,src);
+ const f=mk(c.width,c.height),fx=f.getContext('2d');fx.imageSmoothingQuality='high';fx.drawImage(src,g.x,g.y,g.w,g.h);
+ if(!raw){smooth(f);adjust(f)}x.drawImage(f,0,0)}
+function smooth(f){if(!S.sm)return;const w=f.width,h=f.height,s=mk(w>>1,h>>1);s.getContext('2d').drawImage(f,0,0,s.width,s.height);const x=f.getContext('2d');x.globalAlpha=S.sm/100*.8;x.drawImage(s,0,0,w,h);x.globalAlpha=1}
+function adjust(c){if(S.br==100&&S.ct==100&&S.sa==100&&!S.sh)return;const x=c.getContext('2d'),w=c.width,h=c.height,id=x.getImageData(0,0,w,h),d=id.data,b=S.br/100,k=S.ct/100,s=S.sa/100;
+ if(b!=1||k!=1||s!=1)for(let i=0;i<d.length;i+=4){if(!d[i+3])continue;const l=.299*d[i]+.587*d[i+1]+.114*d[i+2];for(let j=0;j<3;j++){let v=l+(d[i+j]-l)*s;d[i+j]=(v*b-128)*k+128}}
+ if(S.sh){const a=S.sh/100*1.2,o=new Uint8ClampedArray(d),r=w*4;for(let y=1;y<h-1;y++)for(let X=1;X<w-1;X++){const i=y*r+X*4;if(!o[i+3])continue;for(let j=0;j<3;j++){const v=o[i+j];d[i+j]=v+a*(4*v-o[i+j-4]-o[i+j+4]-o[i+j-r]-o[i+j+r])}}}
+ x.putImageData(id,0,0)}
+let raf;function draw(){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{if(!S.orig)return;const[W,H]=dims();render(cv,Math.min(3,700/Math.max(W,H)),false,S.show)})}
+$('#cmp').onpointerdown=()=>{S.show=true;draw()};
+['pointerup','pointerleave','pointercancel'].forEach(n=>$('#cmp').addEventListener(n,()=>{if(S.show){S.show=false;draw()}}));
+
+/* drag + brush */
+let pd=null,last=null;
+const push=()=>{S.undo.push(cl(S.fg));if(S.undo.length>8)S.undo.shift()};
+function stamp(fx,fy,r){const x=S.fg.getContext('2d');x.save();x.beginPath();x.arc(fx,fy,r,0,7);
+ if(S.tool=='erase'){x.globalCompositeOperation='destination-out';x.fill()}else{x.clip();x.drawImage(S.orig,0,0)}x.restore()}
+function paint(e){const r=cv.getBoundingClientRect(),px=(e.clientX-r.left)*cv.width/r.width,py=(e.clientY-r.top)*cv.height/r.height,g=geo(cv.width,cv.height,S.fg);
+ const fx=(px-g.x)/g.s,fy=(py-g.y)/g.s,rad=S.brush*(cv.width/r.width)/g.s/2;
+ if(last){const dx=fx-last[0],dy=fy-last[1],n=Math.max(1,Math.ceil(Math.hypot(dx,dy)/(rad/3)));for(let i=1;i<=n;i++)stamp(last[0]+dx*i/n,last[1]+dy*i/n,rad)}else stamp(fx,fy,rad);
+ last=[fx,fy];draw()}
+cv.onpointerdown=e=>{if(!S.fg)return;cv.setPointerCapture(e.pointerId);pd={x:e.clientX,y:e.clientY};last=null;if(S.tool!='move'){push();paint(e)}};
+cv.onpointermove=e=>{if(!pd)return;if(S.tool=='move'){const r=cv.getBoundingClientRect();S.ox+=(e.clientX-pd.x)/r.width;S.oy+=(e.clientY-pd.y)/r.height;pd={x:e.clientX,y:e.clientY};draw()}else paint(e)};
+cv.onpointerup=cv.onpointercancel=()=>{if(pd)info();pd=null;last=null};
+cv.addEventListener('wheel',e=>{if(!S.fg)return;e.preventDefault();setSl('zoom',Math.max(20,Math.min(400,S.zoom*(e.deltaY<0?1.06:.94))));draw();info()},{passive:false});
+$('#undo').onclick=()=>{if(S.undo.length){S.fg=S.undo.pop();draw();info()}};
+$('#reset').onclick=()=>{if(S.orig){push();S.fg=cl(S.orig);draw();info()}};
+
+/* auto frame */
+function frame(sig){const f=S.fg;if(!f)return;const w=f.width,h=f.height,q=4,s=mk(Math.ceil(w/q),Math.ceil(h/q));s.getContext('2d').drawImage(f,0,0,s.width,s.height);
+ const d=s.getContext('2d').getImageData(0,0,s.width,s.height).data;let x0=1e9,y0=1e9,x1=-1,y1=-1;
+ for(let y=0;y<s.height;y++)for(let x=0;x<s.width;x++)if(d[(y*s.width+x)*4+3]>40){if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y}
+ if(x1<0)return;const bx=x0*q,by=y0*q,bw=(x1-x0+1)*q,bh=(y1-y0+1)*q,[W,H]=dims(),b=Math.max(W/w,H/h);
+ let sc=sig?Math.min(.94*W/bw,.84*H/bh):Math.min(.98*W/bw,.92*H/bh);setSl('zoom',Math.max(20,Math.min(400,sc/b*100)));sc=b*S.zoom/100;
+ S.ox=(W/2-(bx+bw/2)*sc-(W-w*sc)/2)/W;const ty=sig?(H-bh*sc)/2:.04*H;S.oy=(ty-by*sc-(H-h*sc)/2)/H}
+$('#auto').onclick=()=>{if(!S.fg)return toast(t('first'));frame(dims()[1]<120);draw();info()};
+
+/* AI background removal */
+$('#ai').onclick=async()=>{if(!S.orig)return toast(t('first'));busy(true,t('load'));
+ try{if(!window.rb){try{window.rb=await import('https://esm.sh/@imgly/background-removal@1.5.5')}catch(e){window.rb=await import('https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/+esm')}}
+  const blob=await new Promise(r=>S.orig.toBlob(r,'image/png'));
+  const out=await window.rb.removeBackground(blob,{output:{format:'image/png'},progress:(k,c,n)=>{$('#bt').textContent=String(k).startsWith('fetch')?t('load'):t('proc');if(n)$('#pb').style.width=Math.round(c/n*100)+'%'}});
+  const bm=await createImageBitmap(out);push();const n=mk(S.orig.width,S.orig.height);n.getContext('2d').drawImage(bm,0,0,n.width,n.height);S.fg=n;frame(false);draw();info()
+ }catch(e){console.error(e);toast(t('aierr'))}busy(false)};
+
+/* signature clean */
+$('#sig').onclick=()=>{if(!S.orig)return toast(t('first'));push();const f=cl(S.orig),x=f.getContext('2d'),id=x.getImageData(0,0,f.width,f.height),d=id.data;
+ for(let i=0;i<d.length;i+=4){const l=.299*d[i]+.587*d[i+1]+.114*d[i+2];d[i+3]=Math.max(0,Math.min(255,(190-l)*2.8));d[i]*=.6;d[i+1]*=.6;d[i+2]*=.6}
+ x.putImageData(id,0,0);S.fg=f;setBg('#ffffff');frame(true);draw();info()};
+
+/* enhance */
+$('#ae').onclick=()=>{setSl('br',104);setSl('ct',108);setSl('sa',108);setSl('sh',35);setSl('sm',0);draw();info()};
+$('#er2').onclick=()=>{setSl('br',100);setSl('ct',100);setSl('sa',100);setSl('sh',0);setSl('sm',0);draw();info()};
+
+/* export */
+async function build(){const c=mk(1,1);render(c,1,true);const png=S.fmt=='png',mime=png?'image/png':'image/jpeg',tb=q=>new Promise(r=>c.toBlob(r,mime,q)),T=(+$('#KB').value||0)*1024;
+ if(png)return{blob:await tb(),png:true,T};
+ let b=await tb(S.q),miss=false;
+ if(T&&b.size>T){let lo=.02,hi=S.q,best=null;for(let i=0;i<9;i++){const m=(lo+hi)/2,x=await tb(m);if(x.size<=T){best=x;lo=m}else hi=m}
+  if(best)b=best;else{b=await tb(.02);miss=b.size>T}}
+ return{blob:b,miss,T}}
+let it;function info(){clearTimeout(it);it=setTimeout(async()=>{if(!S.fg)return;const[W,H]=dims(),r=await build(),kb=r.blob.size/1024,bad=r.T&&kb>r.T/1024;
+ const txt=`${kb.toFixed(1)} KB · ${W}×${H}px`;$('#meta').textContent=txt;$('#meta').classList.toggle('bad',!!bad);
+ $('#res').hidden=false;$('#res').className='res'+(bad?' bad':'');$('#res').innerHTML=`<span>${kb.toFixed(1)} KB</span><span>${W}×${H}px</span>`;
+ $('#warn').textContent=bad?t('miss'):(r.png&&r.T?t('pngw'):'')},350)}
+$('#dl').onclick=async()=>{if(!S.fg)return toast(t('first'));const r=await build(),[W,H]=dims(),a=document.createElement('a');a.href=URL.createObjectURL(r.blob);a.download=`photo-${W}x${H}.${S.fmt}`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),5000);logUse(r)};
+
+/* Firebase (ডেমো লগ) – config বসালে চালু হবে */
+const FB={apiKey:"AIzaSyBa1LMtIrw5QRBGXEl10-nk-0fLRvqaibg",authDomain:"formphoto-demo.firebaseapp.com",projectId:"formphoto-demo"};
+let fbp=null;
+function fb(){if(!FB.projectId)return null;if(!fbp)fbp=(async()=>{const a=await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js'),f=await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');return{db:f.getFirestore(a.initializeApp(FB)),f}})();return fbp}
+function thumb(c,max,q){const k=Math.min(1,max/Math.max(c.width,c.height)),t=mk(Math.round(c.width*k),Math.round(c.height*k));t.getContext('2d').drawImage(c,0,0,t.width,t.height);return t.toDataURL('image/jpeg',q)}
+async function logUse(r){try{const x=await fb();if(!x)return;const[W,H]=dims(),rc=mk(1,1);render(rc,1,true);let id='';try{id=localStorage.fp_id||(localStorage.fp_id=Math.random().toString(36).slice(2,10))}catch(e){}
+ await x.f.addDoc(x.f.collection(x.db,'uses'),{t:x.f.serverTimestamp(),name:$('#NM').value.slice(0,40),dev:id,ua:navigator.userAgent.slice(0,120),lang:L,fmt:S.fmt,q:S.q,w:W,h:H,kb:+(r.blob.size/1024).toFixed(1),maxkb:+$('#KB').value||0,bg:S.bg,orig:thumb(S.orig,600,.7),res:thumb(rc,600,.8)})}catch(e){console.warn(e)}}
+
+let sv='bn';try{sv=localStorage.getItem('fp_lang')||'bn'}catch(e){}
+setLang(sv);
+</script>
+</body>
+</html>

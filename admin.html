@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>অ্যাডমিন – ফর্মফটো</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:'Hind Siliguri',system-ui,sans-serif;background:#f2f4f8;color:#121826;font-size:15px}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:#18246b;color:#fff}
+header b{font-size:18px}button,input{font:inherit}
+.btn{padding:9px 15px;border:0;border-radius:11px;background:#2447e8;color:#fff;font-weight:600;cursor:pointer}
+.btn.g{background:#e8f0ff;color:#2447e8}.btn.r{background:#fdeceb;color:#c4321f}
+.box{max-width:360px;margin:60px auto;background:#fff;border-radius:20px;padding:22px;display:grid;gap:12px}
+input{padding:12px;border:1.5px solid #e3e7ee;border-radius:12px;width:100%}
+main{max-width:1100px;margin:0 auto;padding:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:16px}
+.st{background:#fff;border-radius:16px;padding:14px}.st b{display:block;font-size:24px}.st span{color:#667085;font-size:13px}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.it{background:#fff;border-radius:18px;padding:12px;display:grid;gap:8px}
+.im{display:flex;gap:8px}.im img{width:50%;height:150px;object-fit:contain;background:#1a1d27;border-radius:10px;cursor:zoom-in}
+.m{font-size:13px;color:#667085}.m b{color:#121826}
+#lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:grid;place-items:center;z-index:9}#lb img{max-width:94vw;max-height:94vh}
+</style></head><body>
+<header><b>অ্যাডমিন প্যানেল</b><button class="btn g" id="out" hidden>লগআউট</button></header>
+<div class="box" id="login"><b>লগইন করুন</b><input id="em" type="email" placeholder="ইমেইল"><input id="pw" type="password" placeholder="পাসওয়ার্ড"><button class="btn" id="go">ঢুকুন</button><span id="msg" class="m"></span></div>
+<main id="app" hidden><div class="stats" id="stats"></div><div class="list" id="list"></div></main>
+<div id="lb" hidden><img alt=""></div>
+<script type="module">
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import {getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import {getFirestore,collection,query,orderBy,limit,getDocs,deleteDoc,doc} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+const FB={apiKey:"AIzaSyBa1LMtIrw5QRBGXEl10-nk-0fLRvqaibg",authDomain:"formphoto-demo.firebaseapp.com",projectId:"formphoto-demo"};
+const $=s=>document.querySelector(s),app=initializeApp(FB),auth=getAuth(app),db=getFirestore(app);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let rows=[];
+$('#go').onclick=()=>signInWithEmailAndPassword(auth,$('#em').value,$('#pw').value).catch(()=>$('#msg').textContent='ইমেইল বা পাসওয়ার্ড ভুল');
+$('#out').onclick=()=>signOut(auth);
+onAuthStateChanged(auth,u=>{$('#login').hidden=!!u;$('#app').hidden=!u;$('#out').hidden=!u;if(u)load()});
+async function load(){try{const q=await getDocs(query(collection(db,'uses'),orderBy('t','desc'),limit(200)));rows=q.docs.map(d=>({id:d.id,...d.data()}));draw()}catch(e){$('#list').textContent='ডাটা পড়া যায়নি: '+e.message}}
+function draw(){const n=rows.length,fm={},sz={};let kb=0;rows.forEach(r=>{fm[r.fmt]=(fm[r.fmt]||0)+1;const k=r.w+'×'+r.h;sz[k]=(sz[k]||0)+1;kb+=r.kb});
+ const top=Object.entries(sz).sort((a,b)=>b[1]-a[1]).slice(0,3).map(a=>a[0]+' ('+a[1]+')').join(', ')||'-';
+ $('#stats').innerHTML=[[n,'মোট ডাউনলোড'],[new Set(rows.map(r=>r.dev)).size,'আলাদা ডিভাইস'],[n?(kb/n).toFixed(1)+' KB':'-','গড় ফাইল সাইজ'],[Object.entries(fm).map(a=>a[0].toUpperCase()+' '+a[1]).join(' · ')||'-','ফরম্যাট'],[top,'জনপ্রিয় মাপ']].map(a=>`<div class="st"><b style="font-size:${String(a[0]).length>12?15:24}px">${esc(a[0])}</b><span>${a[1]}</span></div>`).join('');
+ $('#list').innerHTML=rows.map(r=>`<div class="it" data-id="${r.id}"><div class="im"><img src="${r.orig}" alt="মূল"><img src="${r.res}" alt="ফলাফল"></div>
+ <div class="m"><b>${esc(r.name||'নামহীন')}</b> · ${r.t?r.t.toDate().toLocaleString('bn-BD'):''}<br>${r.fmt.toUpperCase()} · ${r.w}×${r.h}px · <b>${r.kb} KB</b>${r.maxkb?' (সীমা '+r.maxkb+')':''}<br>ডিভাইস ${esc(r.dev)} · ${esc(r.ua.slice(0,60))}</div>
+ <div><a class="btn g" style="text-decoration:none;display:inline-block" href="${r.res}" download="${esc(r.name||'photo')}-${r.w}x${r.h}.jpg">ফলাফল নামান</a> <button class="btn r" data-del="${r.id}">মুছুন</button></div></div>`).join('')||'<p>এখনো কিছু নেই।</p>'}
+document.addEventListener('click',async e=>{const i=e.target;if(i.matches('.im img')){$('#lb img').src=i.src;$('#lb').hidden=false}else if(i.closest('#lb'))$('#lb').hidden=true;
+ if(i.dataset.del&&confirm('মুছে ফেলবেন?')){await deleteDoc(doc(db,'uses',i.dataset.del));rows=rows.filter(r=>r.id!=i.dataset.del);draw()}});
+</script></body></html>
