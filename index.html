@@ -6,72 +6,93 @@
 <title>ফর্মফটো – FormPhoto</title>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#121826;--mut:#667085;--line:#e3e7ee;--bg:#f2f4f8;--card:#fff;--acc:#2447e8;--acc2:#e8f0ff;--ok:#0a8f5b;--bad:#c4321f}
+:root{--ink:#0f172a;--mut:#64708a;--line:#e6e9f2;--bg:#f3f5fb;--card:#fff;--acc:#3b4ef0;--acc2:#eceffe;--g:linear-gradient(135deg,#3b4ef0,#7c5cff);--ok:#0a8f5b;--bad:#c4321f}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 [hidden]{display:none!important}
-body{margin:0;font-family:'Hind Siliguri',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.5}
+body{margin:0;font-family:'Hind Siliguri',system-ui,sans-serif;background:radial-gradient(900px 420px at 50% -160px,#dde4ff,transparent),var(--bg);color:var(--ink);font-size:15px;line-height:1.5}
 button,input{font:inherit;color:inherit}button{cursor:pointer;border:0;background:none}
-.top{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;max-width:1100px;margin:0 auto}
+.top{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;max-width:1100px;margin:0 auto}
 .brand{display:flex;align-items:center;gap:10px}
-.logo{width:30px;height:30px;border-radius:9px;background:linear-gradient(145deg,#2447e8,#6a8bff);position:relative}
-.logo:after{content:"";position:absolute;inset:7px 9px;border:2px solid #fff;border-radius:50% 50% 4px 4px/60% 60% 4px 4px}
+.logo{width:32px;height:32px;border-radius:10px;background:var(--g);position:relative;box-shadow:0 6px 14px -6px rgba(59,78,240,.8)}
+.logo:after{content:"";position:absolute;inset:8px 10px;border:2px solid #fff;border-radius:50% 50% 4px 4px/60% 60% 4px 4px}
 .brand b{font-size:18px}
-#lang{padding:7px 14px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-weight:600;font-size:13px}
-.wrap{max-width:1100px;margin:0 auto;padding:0 14px 48px}
-.hero{background:linear-gradient(160deg,#18246b,#2447e8 70%,#5f84ff);color:#fff;border-radius:26px;padding:28px 22px;margin-bottom:14px}
-.hero h1{margin:0 0 8px;font-size:36px;letter-spacing:-.02em;line-height:1.15}
+#lang{padding:7px 15px;border-radius:99px;background:rgba(255,255,255,.8);border:1px solid var(--line);font-weight:600;font-size:13px;backdrop-filter:blur(8px)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 14px 56px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(155deg,#0d1646,#2339d6 68%,#5a7bff);color:#fff;border-radius:28px;padding:30px 22px;margin-bottom:16px;box-shadow:0 24px 44px -24px rgba(35,57,214,.8)}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px)}
+.hero:before{width:240px;height:240px;right:-70px;top:-80px;background:radial-gradient(circle,rgba(255,255,255,.28),transparent 70%)}
+.hero:after{width:200px;height:200px;left:-60px;bottom:-90px;background:radial-gradient(circle,rgba(124,92,255,.55),transparent 70%)}
+.hero>*{position:relative;z-index:1}
+.hero h1{margin:0 0 8px;font-size:38px;letter-spacing:-.02em;line-height:1.15}
 .lead{margin:0 0 14px;font-size:16.5px;opacity:.94}
-.how{margin:0 0 20px;padding-left:22px;display:grid;gap:4px;font-size:15.5px}
-.hero .btn{background:#fff;color:var(--acc)}
-.hero .btn.ghost{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.4)}
-.hero .hint{color:rgba(255,255,255,.82);margin-top:14px}
+.how{margin:0 0 22px;padding-left:22px;display:grid;gap:5px;font-size:15.5px}
+.hero .btn{background:#fff;color:var(--acc);box-shadow:0 10px 20px -10px rgba(0,0,0,.5)}
+.hero .btn.ghost{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4);box-shadow:none;backdrop-filter:blur(6px)}
 .big .btn{flex:1;min-width:160px;text-align:center;padding:15px 18px;font-size:16px}
 .hero.mini{padding:14px 18px}.hero.mini h1{font-size:20px;margin:0 0 10px}
-.hero.mini .lead,.hero.mini .how,.hero.mini .hint{display:none}
+.hero.mini .lead,.hero.mini .how{display:none}
 .hero.mini .big .btn{padding:9px 12px;font-size:13.5px}
 #work{display:grid;gap:14px}
-.stage{position:sticky;top:0;z-index:4;height:38vh;border-radius:22px;background:#1a1d27;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 12px 32px -14px rgba(18,24,38,.5)}
-.stage:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(110,140,255,.22),transparent 60%)}
-#c{position:relative;max-width:calc(100% - 28px);max-height:calc(100% - 28px);touch-action:none;border-radius:4px;box-shadow:0 10px 40px rgba(0,0,0,.45);background:repeating-conic-gradient(#ddd 0 25%,#fff 0 50%) 0 0/16px 16px}
-#c.paint{cursor:crosshair}
+.stage{position:sticky;top:0;z-index:4;height:38vh;border-radius:24px;background:#12151f;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 18px 36px -18px rgba(15,23,42,.7)}
+.stage:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(110,140,255,.25),transparent 62%)}
+#c{position:relative;max-width:calc(100% - 28px);max-height:calc(100% - 28px);touch-action:none;border-radius:4px;box-shadow:0 12px 44px rgba(0,0,0,.5);background:repeating-conic-gradient(#ddd 0 25%,#fff 0 50%) 0 0/16px 16px;transform-origin:center}
+#c.paint{cursor:none}
+.stage.full{position:fixed;inset:0;height:100dvh;border-radius:0;z-index:30;padding-bottom:150px}
+.full #c{max-height:calc(100% - 12px)}
 .row{display:flex;gap:10px;flex-wrap:wrap}
-.btn{padding:12px 18px;border-radius:14px;background:var(--acc);color:#fff;font-weight:600;transition:transform .12s}
+.btn{padding:12px 18px;border-radius:14px;background:var(--g);color:#fff;font-weight:600;box-shadow:0 10px 18px -10px rgba(59,78,240,.9);transition:transform .12s}
 .btn:active{transform:scale(.97)}
-.btn.ghost{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.btn.alt{background:var(--acc2);color:var(--acc);box-shadow:none}
 .btn.w{width:100%}.btn.sm{padding:9px 14px;font-size:13.5px;border-radius:11px}
-#cmp,#meta{position:absolute;bottom:10px;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.16);color:#fff;font-size:12px;backdrop-filter:blur(6px)}
-#cmp{right:10px;user-select:none;-webkit-user-select:none;touch-action:none}#meta{left:10px}
+#cmp,#meta,#rz{position:absolute;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.16);color:#fff;font-size:12px;backdrop-filter:blur(8px)}
+#cmp{right:10px;bottom:10px;user-select:none;-webkit-user-select:none;touch-action:none}#meta{left:10px;bottom:10px}
+.full #cmp,.full #meta{display:none}
+#rz{top:10px;right:10px;z-index:6}
 #meta.bad{background:#c4321f}
-#busy{position:absolute;inset:0;background:rgba(18,22,32,.84);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;z-index:5;padding:30px;text-align:center}
+#busy{position:absolute;inset:0;background:rgba(14,18,30,.86);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;z-index:8;padding:30px;text-align:center}
 .bar{width:min(240px,70%);height:6px;border-radius:9px;background:rgba(255,255,255,.18);overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:#7c9bff;transition:width .2s}
-.card{background:var(--card);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:13px}
-.card h3{margin:0;font-size:18px}
+.bar i{display:block;height:100%;width:0;background:#8aa2ff;transition:width .2s}
+#tb{position:absolute;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:6;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px;border-radius:22px;background:rgba(15,20,40,.82);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1)}
+#tb .seg{background:rgba(255,255,255,.1);flex:1 1 100%}#tb .seg button{color:#cbd5e1}#tb .seg button.on{background:#fff;color:var(--acc)}
+.tbs{display:flex;align-items:center;gap:8px;color:#fff;font-size:13px;flex:1;min-width:140px}.tbs input{flex:1}
+#tb .ib{padding:9px 14px;border-radius:12px;background:rgba(255,255,255,.14);color:#fff;font-weight:600;font-size:14px}#tb .ib.p{background:#fff;color:var(--acc)}
+#br{position:absolute;z-index:7;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1.5px rgba(0,0,0,.6);pointer-events:none;transform:translate(-50%,-50%)}
+#br.e{background:rgba(255,70,70,.22)}#br.r{background:rgba(40,200,120,.26)}
+.card{background:var(--card);border-radius:24px;padding:20px 18px;display:flex;flex-direction:column;gap:14px;border:1px solid rgba(15,23,42,.05);box-shadow:0 14px 30px -18px rgba(30,41,90,.25)}
+.card h3{margin:0;font-size:19px;display:flex;align-items:center;gap:10px}
+.ic{width:36px;height:36px;border-radius:12px;background:var(--acc2);display:grid;place-items:center;font-size:18px}
 .card .d{margin:-8px 0 0;color:var(--mut);font-size:13.5px}
+.opt{background:#f7f8fd;border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.opt>b{font-size:15px}
 .lbl{font-weight:600;font-size:13.5px;color:var(--mut);margin-bottom:7px;display:block}
-.seg{display:flex;background:var(--bg);border-radius:13px;padding:4px;gap:4px}
-.seg button{flex:1;padding:9px 4px;border-radius:10px;font-weight:500;font-size:14px;color:var(--mut)}
-.seg button.on{background:var(--card);color:var(--acc);font-weight:600;box-shadow:0 1px 4px rgba(18,24,38,.14)}
+.seg{display:flex;background:#e9ecf6;border-radius:14px;padding:4px;gap:4px}
+.seg button{flex:1;padding:9px 4px;border-radius:11px;font-weight:500;font-size:14px;color:var(--mut)}
+.seg button.on{background:#fff;color:var(--acc);font-weight:600;box-shadow:0 2px 6px rgba(15,23,42,.14)}
 .sw{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.sw button,.sw input{width:36px;height:36px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);padding:0}
-.sw button.on{box-shadow:0 0 0 2.5px var(--acc)}
+.sw button,.sw input{width:38px;height:38px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);padding:0}
+.sw button.on{box-shadow:0 0 0 3px var(--acc)}
 .sw .tr{background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/10px 10px}
 .sl span{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:2px}
 .sl i{font-style:normal;font-weight:500}.sl em{font-style:normal;color:var(--mut)}
-input[type=range]{width:100%;accent-color:var(--acc);height:26px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:9px;background:linear-gradient(90deg,#c9d1ff,#9aa8ff)}
+input[type=range]::-moz-range-track{height:6px;border-radius:9px;background:#c9d1ff}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-9px;border-radius:50%;background:#fff;border:2px solid var(--acc);box-shadow:0 3px 8px rgba(59,78,240,.4)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#fff;border:2px solid var(--acc)}
 .f{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.f input,.kb{width:100%;padding:12px 13px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);outline:0;font-size:16px}
-.f input:focus,.kb:focus{border-color:var(--acc);background:#fff}
+.f input,.kb{width:100%;padding:13px;border:1.5px solid var(--line);border-radius:14px;background:#f7f8fd;outline:0;font-size:16px}
+.f input:focus,.kb:focus{border-color:var(--acc);background:#fff;box-shadow:0 0 0 4px rgba(59,78,240,.12)}
 .chips{display:flex;gap:8px;flex-wrap:wrap}
-.chips button{padding:7px 12px;border-radius:99px;background:var(--acc2);color:var(--acc);font-size:13px;font-weight:500}
+.chips button{padding:7px 13px;border-radius:99px;background:var(--acc2);color:var(--acc);font-size:13px;font-weight:500}
 .hint{font-size:12.5px;color:var(--mut);margin:0}
-.res{padding:12px 14px;border-radius:14px;background:#e9f7f0;color:var(--ok);display:flex;justify-content:space-between;font-weight:600}
+.res{padding:13px 15px;border-radius:15px;background:#e7f7ef;color:var(--ok);display:flex;justify-content:space-between;font-weight:600}
 .res.bad{background:#fdeceb;color:var(--bad)}
-#toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:11px 18px;border-radius:14px;font-size:14px;z-index:9;max-width:88vw;text-align:center}
+#toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:11px 18px;border-radius:14px;font-size:14px;z-index:50;max-width:88vw;text-align:center}
 .spin{width:30px;height:30px;border:3px solid rgba(255,255,255,.25);border-top-color:#fff;border-radius:50%;animation:sp 1s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.spin{animation:none}}
-@media(min-width:900px){#work{grid-template-columns:1fr 450px;align-items:start}.stage{top:12px;height:calc(100vh - 24px)}.hero h1{font-size:44px}}
+@media(min-width:900px){#work{grid-template-columns:1fr 450px;align-items:start}.stage:not(.full){top:12px;height:calc(100vh - 24px)}.hero h1{font-size:46px}}
 </style>
 </head>
 <body>
@@ -84,28 +105,29 @@ input[type=range]{width:100%;accent-color:var(--acc);height:26px}
  <div class="row big"><button class="btn cam" data-i="cam2"></button><button class="btn ghost pick" data-i="gal2"></button></div>
 </section>
 <div id="work" hidden>
- <section class="stage">
+ <section class="stage" id="stg">
   <canvas id="c" width="300" height="300"></canvas>
   <div id="meta"></div>
   <button id="cmp" data-i="hold"></button>
+  <button id="rz" hidden>🔍 1x</button>
+  <div id="br" hidden></div>
+  <div id="tb" hidden><div class="seg" id="tools"><button data-v="move" data-i="mv"></button><button data-v="erase" class="on" data-i="er"></button><button data-v="restore" data-i="rs"></button></div><label class="tbs"><span data-i="brush"></span><input type="range" id="bs2" min="10" max="100" value="40"></label><button class="ib" id="undo2" data-i="undo"></button><button class="ib p" id="done" data-i="done"></button></div>
   <div id="busy" hidden><div class="spin"></div><div id="bt"></div><div class="bar"><i id="pb"></i></div></div>
  </section>
  <div class="cards">
   <section class="card">
-   <h3 data-i="c1"></h3><p class="d" data-i="c1d"></p>
-   <button class="btn w" id="ai" data-i="ai"></button>
-   <p class="hint" data-i="aih"></p>
-   <div><span class="lbl" data-i="fix"></span><div class="seg" id="tools"><button data-v="move" class="on" data-i="mv"></button><button data-v="erase" data-i="er"></button><button data-v="restore" data-i="rs"></button></div></div>
-   <div id="bs"></div>
-   <div class="row"><button class="btn ghost sm" id="undo" data-i="undo"></button><button class="btn ghost sm" id="reset" data-i="reset"></button></div>
-   <div><button class="btn ghost sm" id="sig" data-i="sig"></button><p class="hint" data-i="sigh" style="margin-top:6px"></p></div>
+   <h3><span class="ic">✂️</span><span data-i="c1"></span></h3><p class="d" data-i="c1d"></p>
+   <div class="opt"><b data-i="qr"></b><p class="hint" data-i="qrh"></p><div id="ts"></div><p class="hint" data-i="tolh"></p><button class="btn w" id="qrb" data-i="qrb"></button></div>
+   <div class="opt"><b data-i="aiT"></b><p class="hint" data-i="aih"></p><div class="seg" id="mq"><button data-v="isnet_quint8" data-i="fast"></button><button data-v="isnet_fp16" class="on" data-i="bestq"></button></div><button class="btn w alt" id="ai" data-i="ai"></button></div>
+   <div class="opt"><b data-i="hand"></b><p class="hint" data-i="edith"></p><button class="btn w" id="edit" data-i="edit"></button><div id="bs"></div><div class="row"><button class="btn ghost sm" id="undo" data-i="undo"></button><button class="btn ghost sm" id="reset" data-i="reset"></button></div></div>
+   <div class="opt"><b data-i="sigT"></b><p class="hint" data-i="sigh"></p><button class="btn ghost w" id="sig" data-i="sig"></button></div>
   </section>
   <section class="card" style="margin-top:14px">
-   <h3 data-i="c2"></h3><p class="d" data-i="c2d"></p>
+   <h3><span class="ic">🎨</span><span data-i="c2"></span></h3><p class="d" data-i="c2d"></p>
    <div class="sw" id="sw"></div>
   </section>
   <section class="card" style="margin-top:14px">
-   <h3 data-i="c3"></h3><p class="d" data-i="c3d"></p>
+   <h3><span class="ic">📐</span><span data-i="c3"></span></h3><p class="d" data-i="c3d"></p>
    <div class="f"><label><span class="lbl" data-i="w"></span><input id="W" type="number" inputmode="numeric" min="1" max="4000"></label><label><span class="lbl" data-i="h"></span><input id="H" type="number" inputmode="numeric" min="1" max="4000"></label></div>
    <p class="hint" data-i="sh1"></p>
    <div><span class="lbl" data-i="qk"></span><div class="chips" id="chips"></div></div>
@@ -114,12 +136,12 @@ input[type=range]{width:100%;accent-color:var(--acc);height:26px}
    <p class="hint" data-i="drag"></p>
   </section>
   <section class="card" style="margin-top:14px">
-   <h3 data-i="c4"></h3><p class="d" data-i="c4d"></p>
+   <h3><span class="ic">✨</span><span data-i="c4"></span></h3><p class="d" data-i="c4d"></p>
    <div id="sls"></div>
    <div class="row"><button class="btn sm" id="ae" data-i="ae"></button><button class="btn ghost sm" id="er2" data-i="reset"></button></div>
   </section>
   <section class="card" style="margin-top:14px">
-   <h3 data-i="c5"></h3><p class="d" data-i="c5d"></p>
+   <h3><span class="ic">💾</span><span data-i="c5"></span></h3><p class="d" data-i="c5d"></p>
    <div><span class="lbl" data-i="fmt"></span><div class="seg" id="fmt"><button data-v="jpg" class="on">JPG</button><button data-v="jpeg">JPEG</button><button data-v="png">PNG</button></div></div>
    <div><span class="lbl" data-i="q"></span><div class="seg" id="qs"><button data-v=".8" data-i="good"></button><button data-v=".9" class="on" data-i="better"></button><button data-v=".97" data-i="best"></button></div></div>
    <div><span class="lbl" data-i="kb"></span><input class="kb" id="KB" type="number" inputmode="numeric" min="1" data-p="kbp"></div>
@@ -141,13 +163,14 @@ const D={bn:{app:'ফর্মফটো',sub:'ভর্তি আবেদনে
 en:{app:'FormPhoto',sub:'Photo & signature for admission forms',et:'Add a photo or signature',ep:'Everything runs on your phone. Your photo is never uploaded.',gal:'Gallery',cam:'Camera',hold:'Hold to see original',tip:'For best results, shoot facing the light against a plain wall.',t1:'Photo',t2:'Background',t3:'Size',t4:'Enhance',t5:'Save',ai:'Remove background with AI',aih:'The AI model downloads on first use (internet needed). Later runs are faster.',mv:'Move',er:'Erase',rs:'Restore',brush:'Brush size',undo:'Undo',reset:'Reset',sig:'Clean signature',bgc:'Background color',w:'Width (px)',h:'Height (px)',sh1:'Leave one field empty to keep the original ratio.',qk:'Quick suggestions (optional)',zoom:'Zoom',autof:'Auto frame',drag:'Drag on the photo to reposition (Move mode).',br:'Brightness',ct:'Contrast',sa:'Color richness',shp:'Sharpness',sm:'Smooth',ae:'Auto enhance',fmt:'Format',q:'Quality',good:'Good',better:'Better',best:'Best',kb:'Max file size (KB)',kbp:'Optional, e.g. 50',dl:'Download',err:'Could not open this image',first:'Add a photo first',aierr:'AI failed. Check your internet and try again.',load:'Loading AI model…',proc:'Removing background…',miss:'Could not reach this size. Try smaller dimensions.',pngw:'KB limit does not work for PNG. Choose JPG.',sigq:'Signature'}};
 Object.assign(D.bn,{"lead": "ভর্তি আবেদনের ছবি ও সিগনেচার এখানেই তৈরি করুন। ব্যাকগ্রাউন্ড বদলান, ভার্সিটির চাওয়া মাপ ও KB সাইজে সেভ করুন।", "hw1": "নিচের বাটনে ছবি তুলুন অথবা ফোন থেকে সিলেক্ট করুন", "hw2": "ব্যাকগ্রাউন্ড, মাপ ও ছবির মান ঠিক করুন", "hw3": "ডাউনলোড করে আবেদনে আপলোড করুন", "cam2": "📷 ক্যামেরায় ছবি তুলুন", "gal2": "🖼 ফোন থেকে ছবি সিলেক্ট করুন", "priv": "আপনার ছবি আপনার ফোনেই থাকে, কোথাও জমা হয় না।", "c1": "ব্যাকগ্রাউন্ড মুছুন", "c1d": "AI নিজে থেকে ছবির পেছনের অংশ মুছে দেবে। কোথাও ভুল হলে নিচের ব্রাশ দিয়ে ঠিক করুন।", "fix": "হাতে ঠিক করুন (বেছে নিয়ে ছবির উপর আঙুল বুলান)", "sigh": "সিগনেচার হলে সাদা কাগজে সই করে ছবি তুলুন, তারপর এই বাটন চাপুন।", "c2": "ব্যাকগ্রাউন্ডের রং", "c2d": "আবেদনে যে রং চেয়েছে সেটি বেছে নিন, অথবা নিজের পছন্দের রং দিন।", "c3": "ছবির মাপ", "c3d": "ভার্সিটি যে মাপ চেয়েছে সেটি পিক্সেলে লিখুন।", "c4": "ছবি সুন্দর করুন", "c4d": "উজ্জ্বলতা, শার্পনেস, স্মুথ ইত্যাদি নিজের মতো ঠিক করুন।", "c5": "ফাইল সেভ করুন", "c5d": "ফাইলের ধরন, কোয়ালিটি আর সর্বোচ্চ KB সাইজ দিয়ে ডাউনলোড করুন।"});Object.assign(D.en,{"lead": "Make your admission photo and signature here. Change the background and save at the exact size and KB your university asks for.", "hw1": "Take a photo or pick one from your phone", "hw2": "Adjust background, size and quality", "hw3": "Download and upload it to your application", "cam2": "📷 Take a photo", "gal2": "🖼 Choose from phone", "priv": "Your photo stays on your phone. Nothing is stored anywhere.", "c1": "Remove background", "c1d": "AI removes the background automatically. Fix any mistakes with the brush below.", "fix": "Fix by hand (pick a tool, then draw on the photo)", "sigh": "For a signature: sign on white paper, take a photo, then tap this.", "c2": "Background color", "c2d": "Pick the color your form asks for, or choose your own.", "c3": "Photo size", "c3d": "Enter the size your university asks for, in pixels.", "c4": "Enhance", "c4d": "Adjust brightness, sharpness, smoothing and more.", "c5": "Save file", "c5d": "Choose file type, quality and max KB, then download."});
 Object.assign(D.bn,{"nm": "আপনার নাম (ঐচ্ছিক)", "nmp": "যেমন: রাফি"});Object.assign(D.en,{"nm": "Your name (optional)", "nmp": "e.g. Rafi"});
+Object.assign(D.bn,{"c1d": "আগে দ্রুত রিমুভ চেষ্টা করুন। ভালো না হলে AI, তারপর হাতে ঠিক করুন।", "qr": "দ্রুত রিমুভ", "qrh": "প্লেইন দেয়াল বা একরঙা ব্যাকগ্রাউন্ডের ছবিতে সবচেয়ে ভালো। কয়েক সেকেন্ডেই হয়, ইন্টারনেট লাগে না।", "tol": "সংবেদনশীলতা", "tolh": "পেছনের অংশ থেকে গেলে বাড়ান, ছবির অংশ কেটে গেলে কমান। সরিয়ে আবার চাপ ছাড়লেই নতুন ফল দেখাবে।", "qrb": "ব্যাকগ্রাউন্ড মুছুন (দ্রুত)", "aiT": "AI রিমুভ", "aih": "যেকোনো ব্যাকগ্রাউন্ডে কাজ করে। প্রথমবার মডেল নামাতে সময় লাগে, ইন্টারনেট লাগবে।", "fast": "দ্রুত", "bestq": "সেরা মান", "hand": "হাতে ঠিক করুন", "edith": "বড় পর্দায় খুলবে। এক আঙুলে মুছুন, দুই আঙুলে জুম ও সরান।", "edit": "✏️ বড় পর্দায় এডিট করুন", "done": "শেষ", "sigT": "সিগনেচারের জন্য", "sig": "সিগনেচার ক্লিন", "brush": "ব্রাশ"});Object.assign(D.en,{"c1d": "Try Quick remove first. If it is not clean, use AI, then fix by hand.", "qr": "Quick remove", "qrh": "Best for plain wall or single-color backgrounds. Takes a few seconds, no internet needed.", "tol": "Sensitivity", "tolh": "Raise it if background is left behind, lower it if the subject gets cut. Release the slider to see the new result.", "qrb": "Remove background (quick)", "aiT": "AI remove", "aih": "Works on any background. The model downloads on first use, so internet is needed.", "fast": "Fast", "bestq": "Best quality", "hand": "Fix by hand", "edith": "Opens a full screen. One finger erases, two fingers zoom and move.", "edit": "✏️ Edit full screen", "done": "Done", "sigT": "For signatures", "sig": "Clean signature", "brush": "Brush"});
 let L='bn';const t=k=>D[L][k]||k;
-const S={orig:null,fg:null,bg:'#ffffff',zoom:100,ox:0,oy:0,br:100,ct:100,sa:100,sh:0,sm:0,fmt:'jpg',q:.9,tool:'move',brush:30,undo:[],show:false};
+const S={orig:null,fg:null,bg:'#ffffff',zoom:100,ox:0,oy:0,br:100,ct:100,sa:100,sh:0,sm:0,fmt:'jpg',q:.9,tool:'move',brush:40,undo:[],show:false,vz:1,vx:0,vy:0,model:'isnet_fp16',quick:false,tol:45};
 const cv=$('#c');
 const mk=(w,h)=>{const c=document.createElement('canvas');c.width=Math.max(1,w);c.height=Math.max(1,h);return c};
 const cl=c=>{const n=mk(c.width,c.height);n.getContext('2d').drawImage(c,0,0);return n};
 const sl=(k,l,a,b,v)=>`<label class="sl"><span><i data-i="${l}"></i><em>${v}</em></span><input type="range" id="s_${k}" data-k="${k}" min="${a}" max="${b}" value="${v}"></label>`;
-$('#bs').innerHTML=sl('brush','brush',10,100,30);
+$('#bs').innerHTML=sl('brush','brush',10,100,40);$('#ts').innerHTML=sl('tol','tol',10,120,45);
 $('#zs').innerHTML=sl('zoom','zoom',20,400,100);
 $('#sls').innerHTML=[['br','br',50,150,100],['ct','ct',50,150,100],['sa','sa',0,200,100],['sh','shp',0,100,0],['sm','sm',0,100,0]].map(a=>sl(...a)).join('');
 const setSl=(k,v)=>{S[k]=v;const i=$('#s_'+k);i.value=v;i.parentNode.querySelector('em').textContent=Math.round(v)};
@@ -162,7 +185,12 @@ $('#lang').onclick=()=>setLang(L==='bn'?'en':'bn');
 $('#chips').onclick=e=>{const b=e.target.closest('button');if(!b)return;$('#W').value=b.dataset.w;$('#H').value=b.dataset.h;if(S.fg)frame(+b.dataset.h<120);draw();info()};
 
 /* navigation */
-function setTool(v){S.tool=v;$$('#tools button').forEach(b=>b.classList.toggle('on',b.dataset.v==v));cv.classList.toggle('paint',v!='move')}
+function setTool(v){S.tool=v;$$('#tools button').forEach(b=>b.classList.toggle('on',b.dataset.v==v));cv.classList.toggle('paint',v!='move');if(v!='move'&&!$('#stg').classList.contains('full'))openFull();if(v=='move')ring(false)}
+function openFull(){$('#stg').classList.add('full');$('#tb').hidden=false;document.body.style.overflow='hidden';resetView();draw()}
+function closeFull(){$('#stg').classList.remove('full');$('#tb').hidden=true;document.body.style.overflow='';setTool('move');resetView();draw()}
+function view(){cv.style.transform=`translate(${S.vx}px,${S.vy}px) scale(${S.vz})`;$('#rz').hidden=S.vz<=1.001}
+function resetView(){S.vz=1;S.vx=S.vy=0;view()}
+function ring(e){const r=$('#br');if(!e||S.tool=='move'){r.hidden=true;return}const sr=$('#stg').getBoundingClientRect();r.hidden=false;r.className=S.tool=='erase'?'e':'r';r.style.width=r.style.height=S.brush+'px';r.style.left=(e.clientX-sr.left)+'px';r.style.top=(e.clientY-sr.top)+'px'}
 $('#tools').onclick=e=>{const b=e.target.closest('button');if(b)setTool(b.dataset.v)};
 function seg(id,f){$(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;$$(id+' button').forEach(x=>x.classList.toggle('on',x==b));f(b.dataset.v)}}
 seg('#fmt',v=>{S.fmt=v;$('#qs').style.opacity=v=='png'?.4:1;info()});
@@ -177,7 +205,7 @@ $('#cc').oninput=e=>setBg(e.target.value);
 setBg('#ffffff');
 
 /* inputs */
-document.addEventListener('input',e=>{const i=e.target;if(i.dataset.k){S[i.dataset.k]=+i.value;i.parentNode.querySelector('em').textContent=i.value;if(i.dataset.k!='brush'){draw();info()}}});
+document.addEventListener('input',e=>{const i=e.target;if(i.dataset.k){S[i.dataset.k]=+i.value;i.parentNode.querySelector('em').textContent=i.value;if(i.dataset.k!='brush'){draw();info()}else $('#bs2').value=i.value}});
 ['#W','#H'].forEach(s=>$(s).oninput=()=>{draw();info()});
 $('#KB').oninput=info;
 
@@ -204,23 +232,34 @@ function adjust(c){if(S.br==100&&S.ct==100&&S.sa==100&&!S.sh)return;const x=c.ge
  if(b!=1||k!=1||s!=1)for(let i=0;i<d.length;i+=4){if(!d[i+3])continue;const l=.299*d[i]+.587*d[i+1]+.114*d[i+2];for(let j=0;j<3;j++){let v=l+(d[i+j]-l)*s;d[i+j]=(v*b-128)*k+128}}
  if(S.sh){const a=S.sh/100*1.2,o=new Uint8ClampedArray(d),r=w*4;for(let y=1;y<h-1;y++)for(let X=1;X<w-1;X++){const i=y*r+X*4;if(!o[i+3])continue;for(let j=0;j<3;j++){const v=o[i+j];d[i+j]=v+a*(4*v-o[i+j-4]-o[i+j+4]-o[i+j-r]-o[i+j+r])}}}
  x.putImageData(id,0,0)}
-var raf;function draw(){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{if(!S.orig)return;const[W,H]=dims();render(cv,Math.min(3,700/Math.max(W,H)),false,S.show)})}
+var raf;function draw(){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{if(!S.orig)return;const[W,H]=dims();render(cv,Math.min(4,1100/Math.max(W,H)),false,S.show)})}
 $('#cmp').onpointerdown=()=>{S.show=true;draw()};
 ['pointerup','pointerleave','pointercancel'].forEach(n=>$('#cmp').addEventListener(n,()=>{if(S.show){S.show=false;draw()}}));
 
 /* drag + brush */
 let pd=null,last=null;
-const push=()=>{S.undo.push(cl(S.fg));if(S.undo.length>8)S.undo.shift()};
+const push=()=>{S.quick=false;S.undo.push(cl(S.fg));if(S.undo.length>8)S.undo.shift()};
 function stamp(fx,fy,r){const x=S.fg.getContext('2d');x.save();x.beginPath();x.arc(fx,fy,r,0,7);
  if(S.tool=='erase'){x.globalCompositeOperation='destination-out';x.fill()}else{x.clip();x.drawImage(S.orig,0,0)}x.restore()}
 function paint(e){const r=cv.getBoundingClientRect(),px=(e.clientX-r.left)*cv.width/r.width,py=(e.clientY-r.top)*cv.height/r.height,g=geo(cv.width,cv.height,S.fg);
  const fx=(px-g.x)/g.s,fy=(py-g.y)/g.s,rad=S.brush*(cv.width/r.width)/g.s/2;
  if(last){const dx=fx-last[0],dy=fy-last[1],n=Math.max(1,Math.ceil(Math.hypot(dx,dy)/(rad/3)));for(let i=1;i<=n;i++)stamp(last[0]+dx*i/n,last[1]+dy*i/n,rad)}else stamp(fx,fy,rad);
  last=[fx,fy];draw()}
-cv.onpointerdown=e=>{if(!S.fg)return;cv.setPointerCapture(e.pointerId);pd={x:e.clientX,y:e.clientY};last=null;if(S.tool!='move'){push();paint(e)}};
-cv.onpointermove=e=>{if(!pd)return;if(S.tool=='move'){const r=cv.getBoundingClientRect();S.ox+=(e.clientX-pd.x)/r.width;S.oy+=(e.clientY-pd.y)/r.height;pd={x:e.clientX,y:e.clientY};draw()}else paint(e)};
-cv.onpointerup=cv.onpointercancel=()=>{if(pd)info();pd=null;last=null};
-cv.addEventListener('wheel',e=>{if(!S.fg)return;e.preventDefault();setSl('zoom',Math.max(20,Math.min(400,S.zoom*(e.deltaY<0?1.06:.94))));draw();info()},{passive:false});
+const ptr=new Map();let pinch=null,tm=0,st=false;
+function pst(){const[a,b]=[...ptr.values()],r=cv.getBoundingClientRect(),cx=(a.x+b.x)/2,cy=(a.y+b.y)/2,Cx=r.left+r.width/2-S.vx,Cy=r.top+r.height/2-S.vy;return{d:Math.hypot(a.x-b.x,a.y-b.y)||1,vz:S.vz,Cx,Cy,qx:(cx-Cx-S.vx)/S.vz,qy:(cy-Cy-S.vy)/S.vz}}
+function doPinch(){const[a,b]=[...ptr.values()],cx=(a.x+b.x)/2,cy=(a.y+b.y)/2,z=Math.max(1,Math.min(8,pinch.vz*Math.hypot(a.x-b.x,a.y-b.y)/pinch.d));S.vz=z;S.vx=z==1?0:cx-pinch.Cx-z*pinch.qx;S.vy=z==1?0:cy-pinch.Cy-z*pinch.qy;view()}
+cv.onpointerdown=e=>{if(!S.fg)return;cv.setPointerCapture(e.pointerId);ptr.set(e.pointerId,{x:e.clientX,y:e.clientY});
+ if(ptr.size==2){clearTimeout(tm);pinch=pst();pd=null;last=null;ring(false);return}
+ if(ptr.size==1){pd={x:e.clientX,y:e.clientY};last=null;st=false;if(S.tool!='move'){ring(e);clearTimeout(tm);tm=setTimeout(()=>begin(e),70)}}};
+function begin(e){if(ptr.size==1&&pd&&!st){st=true;push();paint(e)}}
+cv.onpointermove=e=>{const p=ptr.get(e.pointerId);if(!p){if(e.pointerType=='mouse')ring(e);return}
+ p.x=e.clientX;p.y=e.clientY;if(ptr.size>=2&&pinch){doPinch();return}
+ if(!pd||ptr.size>1)return;
+ if(S.tool=='move'){const r=cv.getBoundingClientRect();S.ox+=(e.clientX-pd.x)/r.width;S.oy+=(e.clientY-pd.y)/r.height;pd={x:e.clientX,y:e.clientY};draw()}else{clearTimeout(tm);begin(e);paint(e);ring(e)}};
+cv.onpointerup=cv.onpointercancel=e=>{ptr.delete(e.pointerId);if(ptr.size<2)pinch=null;if(!ptr.size){if(pd)info();pd=null;last=null;ring(false)}};
+cv.onpointerleave=()=>{if(!pd)ring(false)};
+cv.addEventListener('wheel',e=>{if(!S.fg)return;e.preventDefault();S.vz=Math.max(1,Math.min(8,S.vz*(e.deltaY<0?1.12:.89)));if(S.vz==1)S.vx=S.vy=0;view()},{passive:false});
+$('#rz').onclick=resetView;$('#edit').onclick=()=>{if(!S.fg)return toast(t('first'));setTool('erase')};$('#done').onclick=closeFull;$('#undo2').onclick=()=>$('#undo').click();$('#bs2').oninput=e=>setSl('brush',+e.target.value);
 $('#undo').onclick=()=>{if(S.undo.length){S.fg=S.undo.pop();draw();info()}};
 $('#reset').onclick=()=>{if(S.orig){push();S.fg=cl(S.orig);draw();info()}};
 
@@ -236,10 +275,27 @@ $('#auto').onclick=()=>{if(!S.fg)return toast(t('first'));frame(dims()[1]<120);d
 /* AI background removal */
 $('#ai').onclick=async()=>{if(!S.orig)return toast(t('first'));busy(true,t('load'));
  try{if(!window.rb){try{window.rb=await import('https://esm.sh/@imgly/background-removal@1.5.5')}catch(e){window.rb=await import('https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/+esm')}}
-  const blob=await new Promise(r=>S.orig.toBlob(r,'image/png'));
-  const out=await window.rb.removeBackground(blob,{output:{format:'image/png'},progress:(k,c,n)=>{$('#bt').textContent=String(k).startsWith('fetch')?t('load'):t('proc');if(n)$('#pb').style.width=Math.round(c/n*100)+'%'}});
-  const bm=await createImageBitmap(out);push();const n=mk(S.orig.width,S.orig.height);n.getContext('2d').drawImage(bm,0,0,n.width,n.height);S.fg=n;frame(false);draw();info()
+  const k=Math.min(1,1024/Math.max(S.orig.width,S.orig.height)),sm=mk(Math.round(S.orig.width*k),Math.round(S.orig.height*k));sm.getContext('2d').drawImage(S.orig,0,0,sm.width,sm.height);
+  const blob=await new Promise(r=>sm.toBlob(r,'image/png'));
+  const out=await window.rb.removeBackground(blob,{model:S.model,output:{format:'image/png'},progress:(k,c,n)=>{$('#bt').textContent=String(k).startsWith('fetch')?t('load'):t('proc');if(n)$('#pb').style.width=Math.round(c/n*100)+'%'}});
+  const bm=await createImageBitmap(out),m=mk(S.orig.width,S.orig.height),mx=m.getContext('2d');mx.drawImage(bm,0,0,m.width,m.height);
+  const md=mx.getImageData(0,0,m.width,m.height).data,n=cl(S.orig),nx=n.getContext('2d'),nd=nx.getImageData(0,0,n.width,n.height),dd=nd.data;
+  for(let i=3;i<dd.length;i+=4)dd[i]=md[i];nx.putImageData(nd,0,0);push();S.fg=n;frame(false);draw();info()
  }catch(e){console.error(e);toast(t('aierr'))}busy(false)};
+seg('#mq',v=>S.model=v);
+function quick(redo){if(!S.orig)return toast(t('first'));if(!redo)push();const o=S.orig,w=o.width,h=o.height,src=o.getContext('2d').getImageData(0,0,w,h),d=src.data,N=w*h,tol=S.tol;
+ let r=0,g=0,b=0,n=0;const bw=Math.max(2,Math.round(Math.min(w,h)*.02)),add=(X,Y)=>{const i=(Y*w+X)*4;r+=d[i];g+=d[i+1];b+=d[i+2];n++};
+ for(let y=0;y<bw;y++)for(let X=0;X<w;X+=2)add(X,y);
+ for(let y=0;y<h*.6;y+=2)for(let X=0;X<bw;X++){add(X,y);add(w-1-X,y)}
+ r/=n;g/=n;b/=n;const bg=new Uint8Array(N),q=new Int32Array(N);let qs=0,qe=0;
+ const tp=p=>{if(!bg[p]){const i=p*4;if(Math.hypot(d[i]-r,d[i+1]-g,d[i+2]-b)<tol){bg[p]=1;q[qe++]=p}}};
+ for(let X=0;X<w;X++){tp(X);tp((h-1)*w+X)}for(let y=0;y<h;y++){tp(y*w);tp(y*w+w-1)}
+ while(qs<qe){const p=q[qs++],X=p%w;if(X>0)tp(p-1);if(X<w-1)tp(p+1);if(p>=w)tp(p-w);if(p<N-w)tp(p+w)}
+ const a=new Uint8Array(N);for(let p=0;p<N;p++){const X=p%w;a[p]=(bg[p]||(X>0&&bg[p-1])||(X<w-1&&bg[p+1])||(p>=w&&bg[p-w])||(p<N-w&&bg[p+w]))?0:255}
+ for(let p=0;p<N;p++){const X=p%w;let s=a[p],c=1;if(X>0){s+=a[p-1];c++}if(X<w-1){s+=a[p+1];c++}if(p>=w){s+=a[p-w];c++}if(p<N-w){s+=a[p+w];c++}d[p*4+3]=s/c}
+ const f=mk(w,h);f.getContext('2d').putImageData(src,0,0);S.fg=f;S.quick=true;frame(false);draw();info()}
+$('#qrb').onclick=()=>quick(false);
+document.addEventListener('change',e=>{if(e.target.id=='s_tol'&&S.quick)quick(true)});
 
 /* signature clean */
 $('#sig').onclick=()=>{if(!S.orig)return toast(t('first'));push();const f=cl(S.orig),x=f.getContext('2d'),id=x.getImageData(0,0,f.width,f.height),d=id.data;
