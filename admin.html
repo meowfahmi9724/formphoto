@@ -18,7 +18,7 @@ main{max-width:1100px;margin:0 auto;padding:16px}
 .it{background:#fff;border-radius:18px;padding:12px;display:grid;gap:8px}
 .im{display:flex;gap:8px}.im img{width:50%;height:150px;object-fit:contain;background:#1a1d27;border-radius:10px;cursor:zoom-in}
 .m{font-size:13px;color:#667085}.m b{color:#121826}
-#lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:grid;place-items:center;z-index:9}#lb img{max-width:94vw;max-height:94vh}
+#lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;place-items:center;z-index:9}#lb:not([hidden]){display:grid}#lb img{max-width:94vw;max-height:94vh}
 </style></head><body>
 <header><b>অ্যাডমিন প্যানেল</b><button class="btn g" id="out" hidden>লগআউট</button></header>
 <div class="box" id="login"><b>লগইন করুন</b><input id="em" type="email" placeholder="ইমেইল"><input id="pw" type="password" placeholder="পাসওয়ার্ড"><button class="btn" id="go">ঢুকুন</button><span id="msg" class="m"></span></div>
